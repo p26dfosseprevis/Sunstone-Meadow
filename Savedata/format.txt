@@ -1,0 +1,6 @@
+money
+rod_level
+[artifact 1,artifact 2]
+[plant a1,plant a2,plant a3]
+[plant b1,plant b2,plant b3]
+[plant c1,plant c2,plant c3]
