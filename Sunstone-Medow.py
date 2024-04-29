@@ -4,7 +4,7 @@ import discord
 from discord.ext import commands
 
 bot = commands.Bot()
-TOKEN = "MTIzMTk3MzM2MzQwNTI5MTUzMA.G_LXsm.kG0pSJDm_58qBDLq-8uWtGwW7KvIqFlviEwmSU"
+TOKEN = ""
 
 
 @bot.slash_command(name="start",description="creates a farm")
