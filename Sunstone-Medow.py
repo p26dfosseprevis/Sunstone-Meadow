@@ -5,8 +5,8 @@ import discord
 from discord.ext import commands
 
 bot = commands.Bot()
-TOKEN = "MTIzMTk3MzM2MzQwNTI5MTUzMA.GTyMmd.fE8QxfEB5BY9i-fWUvGXnxTY46Rio3HTblVRlk"
-
+TOKEN = "" #remember to add a token here 
+croptoemoji = {"dirt":"","carrot":"","potato":"","parsnip":"","corn":""}
 
 @bot.slash_command(name="start",description="creates a farm")
 async def start(ctx): 
@@ -43,9 +43,11 @@ async def shop(ctx):
     
 @bot.slash_command(name="buy",description="buys crop seeds")    
 async def buy(ctx, plant_id: int, spot_in_farm: str):
-    if spot_in_farm != "" OR :
-    
-    await ctx.respond("done")    
+    if spot_in_farm not in ["a1","a2","a3","b1","b2","b3","c1","c2","c3",] :
+        await ctx.respond("thats not a valid location on the farm")
+    else:    
+        
+        await ctx.respond(f"done bought a {extrafun.get_plant_specs(plant_id)[0]} and planted it on tile {spot_in_farm}")    
 
 
 
