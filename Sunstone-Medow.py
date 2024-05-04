@@ -1,13 +1,14 @@
 import timechild
 import extrafun
+import ast
 from discord.ext import commands
 
 bot = commands.Bot()
-TOKEN = "MTIzMTk3MzM2MzQwNTI5MTUzMA.GGwtX3.1bnEAY9Es9x1vIUrqLrHedreATVbs-FMnp7mwM" #remember to add a token here 
+TOKEN = "" #remember to add a token here 
 
 spots_farm = {"a1":4,"a2":5,"a3":6,"b1":7,"b2":8,"b3":9,"b4":10,"b5":11,"b6":12,}
-crop_sell = {"dirt":0,"carrot":50,"potato":400,"parsnip":150,"corn":0,}
-crop_emo={}
+crop_sell = {"dirt":0,"carrot":50,"potato":400,"parsnip":150,"corn":0}
+crop_emo={"dirt":0,"carrot":50,"potato":400,"parsnip":150,"corn":0}
 @bot.slash_command(name="start",description="creates a farm")
 async def start(ctx): 
     savefile = open(f"savedata/{ctx.author.name}.txt","w")
@@ -60,14 +61,20 @@ async def buy(ctx, plant_id: int, spot_in_farm: str):
 @bot.slash_command(name="sell",description="sells a crop in your farm")    
 async def buy(ctx, spot_in_farm: str):
     savedata = f"savedata/{ctx.author.name}.txt"
+    print("ok")
     if spot_in_farm not in ["a1","a2","a3","b1","b2","b3","c1","c2","c3",] :
         await ctx.respond("thats not a valid location on the farm \n try something like a1 or b3")
     else:
-        crop_data = extrafun.get_line_in_file(savedata,spots_farm[spot_in_farm])
-        if timechild.is_larger(crop_data[1],timechild.today_date):
+        print("ok")
+        crop_data = (extrafun.get_line_in_file(savedata,spots_farm[spot_in_farm]))
+        print(crop_data)
+        print(crop_data[1])
+        if timechild.is_larger(timechild.today_date(),crop_data[1]):
             print("good")
             extrafun.overwrite_line(savedata,spots_farm[spot_in_farm],str(["dirt",timechild.today_date()]))
+            print("ok")
             extrafun.overwrite_line(savedata,1,int(extrafun.get_line_in_file(savedata,1)) + crop_sell[str(crop_data[0])])
+            print("ok")
             await ctx.respond(f"you sold a {crop_data[0]} for {crop_sell[str(crop_data[0])]} gold")
         else:
             await ctx.respond("sorry thats not done growing yet")

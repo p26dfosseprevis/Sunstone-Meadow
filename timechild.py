@@ -64,32 +64,30 @@ def add_times(og_time,added_time):
 
 def is_larger(a,b):
     """Returns if date a is larger then date b"""
-    try:
-        if a[0] > b[0]:
-            return True
-        elif a[0] < b[0]:
-            return False
-        elif a[1] > b[1]:
-            return True
-        elif a[1] < b[1]:
-            return False
-        elif a[2] > b[2]:
-            return True
-        elif a[2] < b[2]:
-            return False
-        elif a[3] > b[3]:
-            return True
-        elif a[3] < b[3]:
-            return False
-        elif a[4] > b[4]:
-            return True
-        elif a[4] < b[4]:
-            return False
-        elif a[5] > b[5]:
-            return True
-        elif a[5] < b[5]:
-            return False
-        else:
-            return False
-    except:
-        print("Error you fucked up")
+
+    if a[0] > b[0]:
+        return True
+    elif a[0] < b[0]:
+        return False
+    elif a[1] > b[1]:
+        return True
+    elif a[1] < b[1]:
+        return False
+    elif a[2] > b[2]:
+        return True
+    elif a[2] < b[2]:
+        return False
+    elif a[3] > b[3]:
+        return True
+    elif a[3] < b[3]:
+        return False
+    elif a[4] > b[4]:
+        return True
+    elif a[4] < b[4]:
+        return False
+    elif a[5] > b[5]:
+        return True
+    elif a[5] < b[5]:
+        return False
+    else:
+        return False

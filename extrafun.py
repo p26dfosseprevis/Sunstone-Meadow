@@ -1,4 +1,5 @@
 import json
+import ast
 
 def remove_newline(string):
     """Remove a newline character from the end of a string."""
@@ -9,7 +10,10 @@ def get_line_in_file(file_path, line_number):
     with open(file_path, 'r') as file:
         for current_line_number, line in enumerate(file, start=1):
             if current_line_number == line_number:
-                return json.loads(line.strip()) 
+                try:
+                    return json.loads(line.strip()) 
+                except:
+                    return ast.literal_eval(line.strip())
     print(f"error {line_number} out of range in {file_path}")
     return None 
 
