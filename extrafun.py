@@ -14,7 +14,7 @@ def get_line_in_file(file_path, line_number):
                     return json.loads(line.strip()) 
                 except:
                     return ast.literal_eval(line.strip())
-    print(f"error {line_number} out of range in {file_path}")
+    #print(f"error {line_number} out of range in {file_path}")
     return None 
 
 def overwrite_line(file_path, line_number, new_content):
@@ -22,7 +22,7 @@ def overwrite_line(file_path, line_number, new_content):
         lines = file.readlines()
 
     if line_number < 1 or line_number > len(lines):
-        print(f"Line number '{line_number}' is out of range.")
+        #print(f"Line number '{line_number}' is out of range.")
         return
     new_content_str = str(new_content)
     
@@ -31,4 +31,4 @@ def overwrite_line(file_path, line_number, new_content):
     with open(file_path, 'w') as file:
         file.writelines(lines)
         
-    print(f"Line {line_number} overwritten successfully.")
+    #print(f"Line {line_number} overwritten successfully.")

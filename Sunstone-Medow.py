@@ -1,8 +1,11 @@
 import timechild
 import extrafun
 import ast
+import random
 from discord.ext import commands
 
+
+TOKEN = "MTIzMTk3MzM2MzQwNTI5MTUzMA.G9qcud.uQY-MNju-F7jAufjN0V0s0ghkcAwzmsxOJqmeE"
 bot = commands.Bot()
 
 spots_farm = {"a1":4,"a2":5,"a3":6,"b1":7,"b2":8,"b3":9,"b4":10,"b5":11,"b6":12,}
@@ -11,7 +14,7 @@ crop_emo={"dirt":0,"carrot":50,"potato":400,"parsnip":150,"corn":0}
 @bot.slash_command(name="start",description="creates a farm")
 async def start(ctx): 
     savefile = open(f"savedata/{ctx.author.name}.txt","w")
-    savefile.write("1000\n")
+    savefile.write("50\n")
     savefile.write("0\n")
     savefile.write(str([])+"\n")
     for i in range(0,9):
@@ -72,12 +75,17 @@ async def buy(ctx, spot_in_farm: str):
             await ctx.respond(f"you sold a {crop_data[0]} for {crop_sell[str(crop_data[0])]} gold")
         else:
             await ctx.respond("sorry thats not done growing yet")
-
-fish = [["Name","price","pun"],]
-@bot.slash_command(name="fish",description="so why does every game have fishing in it? oh they make it a law a few years ago. im honestly impressed how they cramed it into turbo crash")    
+#["Name","price","pun","emoji"]
+fish = [["Coffee_Cup","20","This is probobly a important mcguffin in someone elses story",":coffee:"],["Fish","100","It's ofishial",":fish:"],["Tropical fish","150","Your nemo-sis",":tropical_fish:"],
+["Blow fish","200","One bad mother puffer",":blow_fish:"],["Shark","250","he's been working on his a-gil-ity",":shark:"],["Octopus","250","Its ink-tastic",":octopus:"],
+["Crab","100","You are allowed to catch these things after they wrote the new cLaw",":crab:"],["Shrimp","50","it did not in fact fry the rice",":shrimp:"],["Peral","500","Its your lucky day",":oyster:"],
+["Squid","150","No one can stay a kid forever",":squid:"]]
+@bot.slash_command(name="fish",description="As per the new law every new video game must have a fishing minigame")    
 async def buy(ctx):
     savedata = f"savedata/{ctx.author.name}.txt"
-    extrafun.overwrite_line(savedata,1,int(extrafun.get_line_in_file(savedata,1)) + 0)
+    random_fish = random.choice(fish)
+    extrafun.overwrite_line(savedata,1,int(extrafun.get_line_in_file(savedata,1)) + int(random_fish[1]))
+    await ctx.respond(f"You caught a {random_fish[0]} {random_fish[3]} {random_fish[2]} \nYou earned {random_fish[1]} gold")
 
 print("Everything is working")
 bot.run(TOKEN)
